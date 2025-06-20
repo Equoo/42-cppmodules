@@ -9,7 +9,7 @@ SRC_EXT = cpp
 COMPILE_FLAGS = -Wall -Wextra -Werror -MMD -std=c++98
 INCLUDES =
 LIBS = 
-SRCS = main.cpp \
+SRCS = Main.cpp \
 		Contact.cpp \
 		PhoneBook.cpp
 

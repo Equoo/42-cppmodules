@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 16:53:43 by dderny            #+#    #+#             */
-/*   Updated: 2025/06/16 18:18:49 by dderny           ###   ########.fr       */
+/*   Updated: 2025/06/18 04:13:58 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ class PhoneBook {
 		void add(Contact contact);
 		void search(Contact contact);
 		Contact *getAll();
+		int getSize();
 	
 	public:
 		Contact	*contacts;
