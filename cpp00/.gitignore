@@ -50,6 +50,7 @@ cachegrind.out.*
 vgcore.*
 *.pdb
 *.txt
+*.log
 compile_commands.json
 
 # Kernel Module Compile Results
