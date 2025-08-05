@@ -1,4 +1,4 @@
-NAME = gbu
+NAME = zombie
 CXX ?= g++
 
 DIR_OBJ = obj/
@@ -9,8 +9,10 @@ SRC_EXT = cpp
 COMPILE_FLAGS = -Wall -Wextra -Werror -MMD -std=c++98
 INCLUDES =
 LIBS = 
-SRCS = Account.cpp \
-		tests.cpp
+SRCS = Main.cpp \
+		Zombie.cpp \
+		randomChump.cpp \
+		newZombie.cpp
 
 OBJS = ${patsubst %.cpp,$(DIR_OBJ)%.o, $(SRCS)}
 
