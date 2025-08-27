@@ -13,11 +13,20 @@
 #include "Zombie.hpp"
 #include <cstdio>
 #include <iostream>
+#include <string>
 
-Zombie::Zombie(std::string zName) {
-	name = zName;
+Zombie::Zombie() {
+	Name = "undefined";
 }
 
-void Zombie::announce() {
-	std::cout << name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+Zombie::Zombie(std::string name) {
+	Name = name;
+}
+
+void	Zombie::setName( std::string name ) {
+	Name = name;
+}
+
+void	Zombie::announce() {
+	std::cout << Name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }

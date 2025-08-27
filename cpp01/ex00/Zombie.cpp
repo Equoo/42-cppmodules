@@ -14,10 +14,10 @@
 #include <cstdio>
 #include <iostream>
 
-Zombie::Zombie(std::string zName) {
-	name = zName;
+Zombie::Zombie(std::string name) {
+	Name = name;
 }
 
 void Zombie::announce() {
-	std::cout << name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << Name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
