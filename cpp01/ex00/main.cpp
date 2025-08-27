@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 17:14:42 by dderny            #+#    #+#             */
-/*   Updated: 2025/08/05 17:11:20 by dderny           ###   ########.fr       */
+/*   Updated: 2025/08/27 02:18:06 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	testNewZombie(std::string name)
 	Zombie *zombie = newZombie(name);
 	
 	zombie->announce();
+	delete zombie;
 }
 
 int	main() {

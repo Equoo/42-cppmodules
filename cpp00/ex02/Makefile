@@ -1,5 +1,5 @@
-NAME = nokia3310
-CXX ?= g++
+NAME = gdb
+CXX ?= c++
 
 DIR_OBJ = obj/
 SRC_DIR = ./
@@ -9,9 +9,8 @@ SRC_EXT = cpp
 COMPILE_FLAGS = -Wall -Wextra -Werror -MMD -std=c++98
 INCLUDES =
 LIBS = 
-SRCS = Main.cpp \
-		Contact.cpp \
-		PhoneBook.cpp
+SRCS = Account.cpp \
+		tests.cpp
 
 OBJS = ${patsubst %.cpp,$(DIR_OBJ)%.o, $(SRCS)}
 

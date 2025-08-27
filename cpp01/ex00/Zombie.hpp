@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 16:53:43 by dderny            #+#    #+#             */
-/*   Updated: 2025/08/05 17:01:22 by dderny           ###   ########.fr       */
+/*   Updated: 2025/08/27 02:17:21 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 
 class Zombie {
 	public:
-		Zombie(std::string name);
-		std::string name;
-
-	public:
+		Zombie(std::string zName);
 		void announce( void );
+		
+	private:
+		std::string name;
 };
 
 Zombie	*newZombie( std::string name );

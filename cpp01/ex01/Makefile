@@ -1,4 +1,4 @@
-NAME = megaphone
+NAME = zombie
 CXX ?= c++
 
 DIR_OBJ = obj/
@@ -9,11 +9,13 @@ SRC_EXT = cpp
 COMPILE_FLAGS = -Wall -Wextra -Werror -MMD -std=c++98
 INCLUDES =
 LIBS = 
-SRCS = megaphone.cpp
+SRCS = main.cpp \
+		Zombie.cpp \
+		zombieHorde.cpp
 
 OBJS = ${patsubst %.cpp,$(DIR_OBJ)%.o, $(SRCS)}
 
-DEPS= ${patsubst %.cpp,$(DIR_OBJ)%.d, $(SRCS)}
+DEPS = ${patsubst %.cpp,$(DIR_OBJ)%.d, $(SRCS)}
 -include $(DEPS)
 
 .SILENT:

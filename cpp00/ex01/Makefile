@@ -1,5 +1,5 @@
 NAME = nokia3310
-CXX ?= g++
+CXX ?= c++
 
 DIR_OBJ = obj/
 SRC_DIR = ./

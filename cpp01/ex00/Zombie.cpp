@@ -11,10 +11,11 @@
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
+#include <cstdio>
 #include <iostream>
 
-Zombie::Zombie(std::string name) {
-	name = name;
+Zombie::Zombie(std::string zName) {
+	name = zName;
 }
 
 void Zombie::announce() {

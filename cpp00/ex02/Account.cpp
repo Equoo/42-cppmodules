@@ -9,6 +9,8 @@
 
 #include "Account.hpp"
 #include <iostream>
+#include <ctime>
+#include <time.h>
 
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
@@ -16,7 +18,15 @@ int Account::_totalNbDeposits = 0;
 int Account::_totalNbWithdrawals = 0;
 
 void Account::_displayTimestamp() {
-	std::cout << "[19920104_091532] ";
+	time_t		rawtime;
+	struct tm	*timeinfo;
+	char		buffer[16];
+
+	time(&rawtime);
+	timeinfo = localtime(&rawtime);
+
+	strftime(buffer, 16, "%Y%d%m_%H%M%S", timeinfo);
+	std::cout << "[" << buffer << "] ";
 }
 
 int	Account::getNbAccounts() {

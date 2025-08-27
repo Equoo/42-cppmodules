@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Contact.cpp                                        :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/16 17:12:12 by dderny            #+#    #+#             */
-/*   Updated: 2025/06/18 04:22:35 by dderny           ###   ########.fr       */
+/*   Created: 2025/06/16 16:53:43 by dderny            #+#    #+#             */
+/*   Updated: 2025/08/27 02:17:21 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Contact.hpp"
+#ifndef ZOMBIE_HPP
+#define ZOMBIE_HPP
+#include <string>
 
-Contact::Contact() {
-	firstname = "John";
-	lastname = "Doe";
-	phone_number = "+33601010101";
-	nickname = "Marvin";
-	darkest_secret = "42";
-}
+class Zombie {
+	public:
+		Zombie(std::string zName);
+		void announce( void );
+		
+	private:
+		std::string name;
+};
 
-std::string Contact::getDarkestSecret() {
-	return (darkest_secret);
-}
+Zombie	*newZombie( std::string name );
+void	randomChump( std::string name );
 
-void Contact::setDarkestSecret(std::string secret) {
-	darkest_secret = secret;
-}
+#endif

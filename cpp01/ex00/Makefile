@@ -1,5 +1,5 @@
 NAME = zombie
-CXX ?= g++
+CXX ?= c++
 
 DIR_OBJ = obj/
 SRC_DIR = ./
@@ -9,7 +9,7 @@ SRC_EXT = cpp
 COMPILE_FLAGS = -Wall -Wextra -Werror -MMD -std=c++98
 INCLUDES =
 LIBS = 
-SRCS = Main.cpp \
+SRCS = main.cpp \
 		Zombie.cpp \
 		randomChump.cpp \
 		newZombie.cpp
