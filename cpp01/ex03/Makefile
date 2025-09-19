@@ -1,4 +1,4 @@
-NAME = hibrain
+NAME = stopit
 CXX ?= c++
 
 DIR_OBJ = obj/
@@ -9,7 +9,10 @@ SRC_EXT = cpp
 COMPILE_FLAGS = -Wall -Wextra -Werror -MMD -std=c++98
 INCLUDES =
 LIBS = 
-SRCS = main.cpp
+SRCS = main.cpp \
+	Weapon.cpp \
+	HumanA.cpp \
+	HumanB.cpp
 
 OBJS = ${patsubst %.cpp,$(DIR_OBJ)%.o, $(SRCS)}
 

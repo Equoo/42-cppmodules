@@ -1,4 +1,4 @@
-NAME = hibrain
+NAME = fsnr # File Search and Replace
 CXX ?= c++
 
 DIR_OBJ = obj/
