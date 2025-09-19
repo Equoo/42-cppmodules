@@ -1,4 +1,4 @@
-NAME = ref_test
+NAME = hibrain
 CXX ?= c++
 
 DIR_OBJ = obj/
@@ -6,7 +6,7 @@ SRC_DIR = ./
 INC_DIR = ./
 SRC_EXT = cpp
 
-COMPILE_FLAGS = -std=c++98
+COMPILE_FLAGS = -Wall -Wextra -Werror -MMD -std=c++98
 INCLUDES =
 LIBS = 
 SRCS = main.cpp
