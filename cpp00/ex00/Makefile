@@ -1,5 +1,5 @@
 NAME = megaphone
-CXX ?= c++
+CXX = c++
 
 DIR_OBJ = obj/
 SRC_DIR = ./
@@ -34,7 +34,7 @@ debug:
 $(DIR_OBJ)%.o: $(SRC_DIR)%.$(SRC_EXT)
 	echo "Compiling $*.$(SRC_EXT)"
 	mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -MP -MMD -c $< -o $@
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -MP -c $< -o $@
 
 $(NAME): $(DIR_OBJ) $(OBJS) Makefile
 	$(CXX) $(OBJS) -o $@ ${LIBS}

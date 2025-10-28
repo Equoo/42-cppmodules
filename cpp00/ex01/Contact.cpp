@@ -6,21 +6,22 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 17:12:12 by dderny            #+#    #+#             */
-/*   Updated: 2025/06/18 04:22:35 by dderny           ###   ########.fr       */
+/*   Updated: 2025/10/28 22:46:04 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
-Contact::Contact() {
-	firstname = "John";
-	lastname = "Doe";
-	phone_number = "+33601010101";
-	nickname = "Marvin";
-	darkest_secret = "42";
-}
+Contact::Contact()
+	: firstname(),
+	lastname(),
+	phone_number(),
+	nickname(), 
+	darkest_secret() {}
 
-std::string Contact::getDarkestSecret() {
+Contact::~Contact() {}
+
+std::string Contact::getDarkestSecret() const {
 	return (darkest_secret);
 }
 
