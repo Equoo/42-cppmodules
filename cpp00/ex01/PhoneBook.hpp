@@ -15,20 +15,24 @@
 #include "Contact.hpp"
 
 class PhoneBook {
-	public:
-		PhoneBook();
-		~PhoneBook();
-		void add(Contact contact);
-		void search(Contact contact);
-		Contact *getAll();
-		int getSize();
-	
-	public:
-		Contact	*contacts;
-	
-	private:
-		unsigned int last_added;
-		unsigned int size;
+public:
+	PhoneBook();
+	~PhoneBook();
+	void	start();	
+
+private:
+	bool	prompt_command();
+
+	void	add_cmd();
+	void	search_cmd();
+
+	void	contact_add(Contact contact);
+	void	contact_(Contact contact);
+
+private:
+	Contact	contacts[8];
+	size_t	size;
+	size_t	last_added;
 };
 
 #endif

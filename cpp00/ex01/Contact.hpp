@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 16:53:43 by dderny            #+#    #+#             */
-/*   Updated: 2025/06/18 04:22:47 by dderny           ###   ########.fr       */
+/*   Updated: 2025/10/28 15:34:44 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 class Contact {
 	public:
 		Contact();
-		std::string getDarkestSecret();
+		~Contact();
+		std::string getDarkestSecret() const;
 		void setDarkestSecret(std::string secret);
 
 	public:
