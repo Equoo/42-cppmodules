@@ -54,8 +54,8 @@ static std::string	prompt(std::string prompt) {
 	return (response);
 }
 
-static uint prompt_uint(std::string prompt) {
-	uint	response;
+static int prompt_int(std::string prompt) {
+	int	response;
 	
 	cout << prompt << " ➜ ";	
 	cin >> response;
@@ -106,20 +106,18 @@ bool	PhoneBook::prompt_command() {
 
 
 void	PhoneBook::add_cmd() {
-	Contact	new_contact;
-
 	cout << "Fill these informations about the contact:" << std::endl;
-	
-	new_contact.firstname = prompt("Firstname");
-	new_contact.lastname = prompt("Lastname");
-	new_contact.nickname = prompt("Nickname");
-	new_contact.phone_number = prompt("Phone Number");
-	new_contact.setDarkestSecret(prompt("Darkest Secret"));
+	Contact	new_contact(
+		prompt("Firstname"),
+		prompt("Lastname"),
+		prompt("Nickname"),
+		prompt("Phone number"),
+		prompt("Darkest secret")
+	);
 
-	this->contact_add(new_contact);
-	
-	cout << new_contact.firstname << " "
-			<< new_contact.lastname << " was correctly added." << std::endl;
+	this->contact_add(new_contact);	
+	cout << new_contact.getFirstName() << " "
+			<< new_contact.getLastName() << " was correctly added." << std::endl;
 }
 
 static std::string	truncate_str(std::string str, const std::size_t size) {
@@ -144,9 +142,9 @@ static void show_table(const Contact *list, const int size) {
 		contact = list[i];
 		cout << "|"
 			<< std::setw(10) << i << "|"
-			<< std::setw(10) << truncate_str(contact.firstname, 10) << "|"
-			<< std::setw(10) << truncate_str(contact.lastname, 10) << "|"
-			<< std::setw(10) << truncate_str(contact.nickname, 10) << "|" << std::endl;
+			<< std::setw(10) << truncate_str(contact.getFirstName(), 10) << "|"
+			<< std::setw(10) << truncate_str(contact.getLastName(), 10) << "|"
+			<< std::setw(10) << truncate_str(contact.getNickname(), 10) << "|" << std::endl;
 	}
 	cout << "---------------------------------------------" << std::endl << std::endl;
 }
@@ -160,16 +158,16 @@ void	PhoneBook::search_cmd() {
 	if (size == 0)
 		return;
 
-	int searched = prompt_uint("Enter the searched contact id");
-	if (searched >= size)
+	int searched = prompt_int("Enter the searched contact id");
+	if (searched >= size || searched < 0)
 		throw std::invalid_argument("Invalid input: Must be superior to 0 and inferior to N contacts.");
 	
 	contact = list[searched];
 	cout << std::endl
-		<< "Firstname	:  " << contact.firstname << std::endl
-		<< "Lastname	:  " << contact.lastname << std::endl
-		<< "Nickname	:  " << contact.nickname << std::endl
-		<< "Phone Number	:  " << contact.phone_number << std::endl
+		<< "Firstname	:  " << contact.getFirstName() << std::endl
+		<< "Lastname	:  " << contact.getLastName() << std::endl
+		<< "Nickname	:  " << contact.getNickname() << std::endl
+		<< "Phone Number	:  " << contact.getPhoneNumber() << std::endl
 		<< "Darkest Secret	:  " << contact.getDarkestSecret() << std::endl;
 }
 

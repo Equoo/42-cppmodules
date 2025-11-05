@@ -12,6 +12,8 @@
 
 #include "Contact.hpp"
 
+using std::string;
+
 Contact::Contact()
 	: firstname(),
 	lastname(),
@@ -19,12 +21,32 @@ Contact::Contact()
 	nickname(), 
 	darkest_secret() {}
 
+Contact::Contact(string firstname, string lastname, string phonenumber,
+	string nickname, string darkest_secret)
+	: firstname(firstname),
+	lastname(lastname),
+	phone_number(phonenumber),
+	nickname(nickname), 
+	darkest_secret(darkest_secret) {}
+
 Contact::~Contact() {}
 
-std::string Contact::getDarkestSecret() const {
+string Contact::getDarkestSecret() const {
 	return (darkest_secret);
 }
 
-void Contact::setDarkestSecret(std::string secret) {
-	darkest_secret = secret;
+string Contact::getFirstName() const {
+	return (firstname);
+}
+
+string Contact::getLastName() const {
+	return (lastname);
+}
+
+string Contact::getNickname() const {
+	return (nickname);
+}
+
+string Contact::getPhoneNumber() const {
+	return (phone_number);
 }
