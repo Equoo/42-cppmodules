@@ -36,11 +36,14 @@ static void	ignore_line() {
 	cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
-static std::string	prompt(std::string prompt) {
+static std::string	prompt(std::string prompt, bool is_line) {
 	std::string	response;
 	
-	cout << prompt << " ➜ ";	
-	cin >> response;	
+	cout << prompt << " ➜ ";
+	if (is_line)
+		std::getline(std::cin >> std::ws, response);
+	else
+		cin >> response;	
 	if (!cin) {
 		if (cin.eof()) {
 			std::exit(0);
@@ -90,7 +93,7 @@ void	PhoneBook::start() {
 }
 
 bool	PhoneBook::prompt_command() {
-	std::string	cmd = prompt("nokia3310");
+	std::string	cmd = prompt("nokia3310", false);
 
 	if (cmd == "ADD")
 		this->add_cmd();
@@ -108,11 +111,11 @@ bool	PhoneBook::prompt_command() {
 void	PhoneBook::add_cmd() {
 	cout << "Fill these informations about the contact:" << std::endl;
 	Contact	new_contact(
-		prompt("Firstname"),
-		prompt("Lastname"),
-		prompt("Nickname"),
-		prompt("Phone number"),
-		prompt("Darkest secret")
+		prompt("Firstname", false),
+		prompt("Lastname", false),
+		prompt("Nickname", false),
+		prompt("Phone number", false),
+		prompt("Darkest secret", true)
 	);
 
 	this->contact_add(new_contact);	
