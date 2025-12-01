@@ -43,7 +43,7 @@ int main() {
 			delete club;
 		}
 	} catch (const std::exception &err) {
-		std::cerr << "An error occured:\n\t" << err.what() << std::endl;
+		std::cout << "An error occured:\n\t" << err.what() << std::endl;
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);

@@ -85,9 +85,9 @@ void	PhoneBook::start() {
 			if (this->prompt_command())
 				return;
 		} catch( const std::exception & e ) {
-			std::cerr << e.what() << std::endl;
+			std::cout << e.what() << std::endl;
 		} catch( ... ) {
-			std::cerr << "Another unknown error" << std::endl;
+			std::cout << "Another unknown error" << std::endl;
 	    }
 	}
 }
