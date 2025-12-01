@@ -63,7 +63,7 @@ int	main( int argc, char **argv ) {
 		process_args(argv, n, name);		
 		test_hordes(n, name);
 	} catch (const std::exception &err) {
-		std::cerr << "An error occured:\n\t" << err.what() << std::endl;
+		std::cout << "An error occured:\n\t" << err.what() << std::endl;
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
