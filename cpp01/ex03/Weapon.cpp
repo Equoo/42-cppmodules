@@ -1,15 +1,6 @@
 #include "Weapon.hpp"
 
-Weapon::Weapon(const Weapon &copy)
-{
-	type = copy.getType();
-}
-
-Weapon::Weapon(std::string type)
-{
-	this->type = type;
-}
-
+Weapon::Weapon(std::string type) : type(type) {}
 
 std::string Weapon::getType() const
 {

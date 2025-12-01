@@ -93,7 +93,7 @@ void	PhoneBook::start() {
 }
 
 bool	PhoneBook::prompt_command() {
-	std::string	cmd = prompt("nokia3310", false);
+	std::string	cmd = prompt("Use one of these three commands: ADD, SEARCH, EXIT.\nnokia3310", false);
 
 	if (cmd == "ADD")
 		this->add_cmd();

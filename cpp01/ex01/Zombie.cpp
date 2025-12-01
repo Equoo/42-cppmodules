@@ -16,17 +16,17 @@
 #include <string>
 
 Zombie::Zombie() {
-	Name = "undefined";
+	this->name = "undefined";
 }
 
 Zombie::Zombie(std::string name) {
-	Name = name;
+	this->name = name;
 }
 
 void	Zombie::setName( std::string name ) {
-	Name = name;
+	this->name = name;
 }
 
 void	Zombie::announce() {
-	std::cout << Name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }

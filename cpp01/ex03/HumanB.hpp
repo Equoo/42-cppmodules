@@ -6,21 +6,20 @@
 
 class HumanB
 {
-	public:
-		HumanB(const HumanB &copy);
-		HumanB(std::string name);
-		
-	public: // Implementations
-		void		attack() const;
+public:
+	HumanB(std::string name);
+	
+public:
+	void		attack() const;
 
-	public: // Setters / Getters
-		std::string getName() const;
-		Weapon 		*getWeapon() const;
-		void 		setWeapon(Weapon &weapon);
+public:
+	std::string getName() const;
+	Weapon 		*getWeapon() const;
+	void 		setWeapon(Weapon &weapon);
 
-	private:
-		Weapon		*weapon; // isn't initialized in the constructor so can be NULL
-		std::string	name;
+private:
+	Weapon		*weapon;
+	std::string	name;
 };
 
 #endif

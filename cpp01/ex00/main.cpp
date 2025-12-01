@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
+#include <cstdlib>
+#include <exception>
 #include <iostream>
 #include <ostream>
 
@@ -30,11 +32,17 @@ void	testNewZombie(std::string name)
 }
 
 int	main() {
-	testRandomChump("jacob");
-	testRandomChump("Smith");
-	testRandomChump("Steve J. ~Watson");
+	try {
+		testRandomChump("jacob");
+		testRandomChump("Smith");
+		testRandomChump("Steve J. ~Watson");
 
-	testNewZombie("Jacob");
-	testNewZombie("Smith");
-	testNewZombie("Steve J. ~Watson");
+		testNewZombie("Jacob");
+		testNewZombie("Smith");
+		testNewZombie("Steve J. ~Watson");
+	} catch (std::exception e) {
+		std::cout << "Error: " << e.what() << std::endl;
+		return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
 }
