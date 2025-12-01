@@ -17,7 +17,7 @@
 int	main() {
 	std::string		str = std::string("HI THIS IS BRAIN");
 	std::string		*stringPTR = &str;
-	std::string&	stringREF = str;
+	std::string		&stringREF = str;
 
 	printf("adress of str:\t\t%p\n", &str);
 	printf("adress of stringPTR:\t%p\n", &stringPTR);

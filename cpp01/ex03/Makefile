@@ -1,5 +1,5 @@
 NAME = stopit
-CXX ?= c++
+CXX = c++
 
 DIR_OBJ = obj/
 SRC_DIR = ./

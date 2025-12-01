@@ -20,17 +20,14 @@
 #include <string>
 #include <cerrno>
 
-void	test_hordes( int N, std::string name ) {
-	std::cout << "Creating a horde of " << N << " zombies named " << name << ":" << std::endl;
+static void	test_hordes( int n, std::string name ) {
+	std::cout << "Creating a horde of "
+		<< n << " zombies named "
+		<< name << ":" << std::endl;
 	
-	Zombie	*zombies = zombieHorde( N, name );
+	Zombie	*zombies = zombieHorde( n, name );
 
-	if (!zombies) {
-		std::cout << "Allocation failed" << std::endl;
-		return;
-	}
-
-	for (int i = 0; i < N; i++) {
+	for (int i = 0; i < n; i++) {
 		std::cout << "\tzombie " << i << ": ";
 		zombies[i].announce();
 	}
@@ -38,27 +35,33 @@ void	test_hordes( int N, std::string name ) {
 	delete [] zombies;
 }
 
+static void	process_args(char **args, long &n, std::string &name) {
+	char		*endptr;
+
+	n = std::strtol(args[1], &endptr, 0);
+	name = std::string(args[2]);	
+	if (endptr && *endptr)
+		throw std::runtime_error(std::string("Conversion failed: isn't a valid number."));
+	if (errno != 0)
+		throw std::runtime_error(std::string("Conversion failed: ") + std::strerror(errno));
+	if (n < 0)
+		throw std::runtime_error(std::string("Horde size must be positive."));
+	if (n > INT_MAX)
+		throw std::runtime_error(std::string("Horde size must be inferior to INT_MAX."));	
+}
+
 int	main( int argc, char **argv ) {
+	long		n;
+	std::string	name;
+
 	try {
 		if (argc != 3) {
 			std::cout << "Usage: <horde size> <zombies name>." << std::endl;
 			return (EXIT_SUCCESS);
 		}
-
-		char		*endptr;
-		long		N = std::strtol(argv[1], &endptr, 0);
-		std::string	name = std::string(argv[2]);
 		
-		if (endptr && *endptr)
-			throw std::runtime_error(std::string("Conversion failed: isn't a valid number."));
-		if (errno != 0)
-			throw std::runtime_error(std::string("Conversion failed: ") + std::strerror(errno));
-		if (N < 0)
-			throw std::runtime_error(std::string("Horde size must be positive."));
-		if (N > INT_MAX)
-			throw std::runtime_error(std::string("Horde size must be inferior to INT_MAX."));
-
-		test_hordes(N, name);
+		process_args(argv, n, name);		
+		test_hordes(n, name);
 	} catch (const std::exception &err) {
 		std::cerr << "An error occured:\n\t" << err.what() << std::endl;
 		return (EXIT_FAILURE);

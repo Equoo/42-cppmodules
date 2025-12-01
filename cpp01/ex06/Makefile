@@ -1,4 +1,4 @@
-NAME = fsnr # File Search and Replace
+NAME = harl
 CXX = c++
 
 DIR_OBJ = obj/
@@ -9,7 +9,7 @@ SRC_EXT = cpp
 COMPILE_FLAGS = -Wall -Wextra -Werror -MMD -std=c++98
 INCLUDES =
 LIBS = 
-SRCS = main.cpp
+SRCS = main.cpp Harl.cpp
 
 OBJS = ${patsubst %.cpp,$(DIR_OBJ)%.o, $(SRCS)}
 

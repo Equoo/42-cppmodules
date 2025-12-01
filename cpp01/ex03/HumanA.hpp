@@ -6,21 +6,20 @@
 
 class HumanA
 {
-	public:
-		HumanA(const HumanA &copy);
-		HumanA(std::string name, Weapon &weapon);
-		
-	public: // Implementations
-		void		attack() const;
+public:
+	HumanA(std::string name, Weapon &weapon);
+	
+public:
+	void		attack() const;
 
-	public: // Setters / Getters
-		std::string getName() const;
-		Weapon 		&getWeapon() const;
-		void 		setWeapon(Weapon &weapon);
+public:
+	std::string getName() const;
+	Weapon 		&getWeapon() const;
+	void 		setWeapon(Weapon &weapon);
 
-	private:
-		Weapon		&weapon; // is initialized in the constructor
-		std::string	name;
+private:
+	Weapon		&weapon;
+	std::string	name;
 };
 
 #endif

@@ -24,9 +24,9 @@ class Zombie {
 		void	announce( void );
 		
 	private:
-		std::string Name;
+		std::string name;
 };
 
-Zombie	*zombieHorde( int N, std::string name );
+Zombie	*zombieHorde( int n, std::string name );
 
 #endif

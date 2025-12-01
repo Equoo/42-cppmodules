@@ -2,16 +2,7 @@
 #include "Weapon.hpp"
 #include <iostream>
 
-HumanB::HumanB(const HumanB &copy) {
-	name = copy.getName();
-	weapon = copy.getWeapon();
-}
-
-HumanB::HumanB(std::string name) {
-	this->name = name;
-	this->weapon = NULL;
-}
-
+HumanB::HumanB(std::string name) : name(name) {}
 
 std::string HumanB::getName() const {
 	return name;
@@ -24,7 +15,6 @@ Weapon *HumanB::getWeapon() const {
 void HumanB::setWeapon(Weapon &weapon) {
 	this->weapon = &weapon;
 }
-
 
 void HumanB::attack() const {
 	if (weapon)
