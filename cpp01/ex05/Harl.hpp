@@ -3,13 +3,6 @@
 
 # include <string>
 
-typedef	enum {
-	HARL_DEBUG,
-	HARL_INFO,
-	HARL_WARNING,
-	HARL_ERROR
-}	t_harl_level;
-
 class Harl
 {
 public:

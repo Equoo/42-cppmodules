@@ -11,16 +11,31 @@
 /* ************************************************************************** */
 
 #include "Harl.hpp"
+#include <iostream>
 
-int main() {
-	Harl::setLevel("INFO");
-	
-	Harl::complain("DEBUG", "What is this ???");
-	Harl::complain("WARNING", "Connection lost.");
-	Harl::complain("INFO", "Client XX joining.");
-	Harl::complain("INFO", "Connection established.");
-	Harl::complain("ERROR", "XX failed to connect.");
-	Harl::complain("FEUR", "Will never be printed");
+const std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
+int main(int argc, char **argv) {
+	Harl			harl;
+	std::string		level_str("INFO");
+	int				level = -1;
+
+	if (argc > 1)
+		level_str = std::string(argv[1]);
+
+	for (int i = 0; i < 4; i++) {
+	  if (levels[i] == level_str) {
+		level = i;
+		break;
+	  }
+	}
+
+	if (level == -1)
+	{
+		std::cout << "Invalid level." << std::endl;
+		return (0);
+	}
+
+	harl.complain((t_harl_level)level);
 	return (0);
 }
