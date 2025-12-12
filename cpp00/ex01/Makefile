@@ -10,6 +10,7 @@ COMPILE_FLAGS = -Wall -Wextra -Werror -MMD -std=c++98
 INCLUDES =
 LIBS = 
 SRCS = Main.cpp \
+		Prompt.cpp \
 		Contact.cpp \
 		PhoneBook.cpp
 

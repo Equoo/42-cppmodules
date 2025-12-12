@@ -17,16 +17,16 @@ using std::string;
 Contact::Contact()
 	: firstname(),
 	lastname(),
-	phone_number(),
 	nickname(), 
+	phone_number(),
 	darkest_secret() {}
 
-Contact::Contact(string firstname, string lastname, string phonenumber,
-	string nickname, string darkest_secret)
+Contact::Contact(string firstname, string lastname, string nickname,
+				 string phonenumber, string darkest_secret)
 	: firstname(firstname),
 	lastname(lastname),
-	phone_number(phonenumber),
 	nickname(nickname), 
+	phone_number(phonenumber),
 	darkest_secret(darkest_secret) {}
 
 Contact::~Contact() {}
