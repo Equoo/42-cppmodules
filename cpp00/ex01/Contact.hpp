@@ -17,20 +17,20 @@
 class Contact {
 	public:
 		Contact();
-		Contact(std::string firstname, std::string lastname, std::string phonenumber,
-				std::string nickname, std::string darkest_secret);
+		Contact(std::string firstname, std::string lastname, std::string nickname,
+				std::string phonenumber, std::string darkest_secret);
 		~Contact();
-		std::string getDarkestSecret() const;
 		std::string getFirstName() const;
 		std::string getLastName() const;
-		std::string getPhoneNumber() const;
 		std::string getNickname() const;
+		std::string getPhoneNumber() const;
+		std::string getDarkestSecret() const;
 
 	private:
 		std::string firstname;
 		std::string lastname;
-		std::string phone_number;
 		std::string nickname;
+		std::string phone_number;
 		std::string darkest_secret;
 };
 
