@@ -31,7 +31,7 @@ std::string	prompt(std::string prompt, bool is_line) {
 	if (!cin) {
 		if (cin.eof()) {
 			cin.clear();
-			throw std::invalid_argument("You must use EXIT to end the process.");
+			throw std::invalid_argument("\nYou must use EXIT to end the process.");
 		}
 
 		cin.clear();

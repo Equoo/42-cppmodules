@@ -35,7 +35,7 @@ void	PhoneBook::start() {
 				return;
 		} catch( const std::exception & e ) {
 			std::cout << e.what() << std::endl;
-			if (e.what() == std::string("You must use EXIT to end the process."))
+			if (e.what() == std::string("\nYou must use EXIT to end the process."))
 				return;
 		} catch( ... ) {
 			std::cout << "Another unknown error" << std::endl;
