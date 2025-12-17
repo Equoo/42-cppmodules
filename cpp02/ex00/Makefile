@@ -1,4 +1,4 @@
-NAME = float
+NAME = fixed
 CXX = c++
 
 DIR_OBJ = obj/
@@ -10,6 +10,7 @@ COMPILE_FLAGS = -Wall -Wextra -Werror -MMD -std=c++98
 INCLUDES =
 LIBS = 
 SRCS = main.cpp \
+       Fixed.cpp
 
 OBJS = ${patsubst %.cpp,$(DIR_OBJ)%.o, $(SRCS)}
 
