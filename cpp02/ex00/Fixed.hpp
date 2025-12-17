@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Main.cpp                                           :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/16 17:14:42 by dderny            #+#    #+#             */
-/*   Updated: 2025/08/27 02:18:06 by dderny           ###   ########.fr       */
+/*   Created: 2025/06/16 16:53:43 by dderny            #+#    #+#             */
+/*   Updated: 2025/08/27 02:53:09 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
-#include <iostream>
+#ifndef FIXED_HPP
+# define FIXED_HPP
+# include <stdint.h>
 
-int	main( void ) {
-	Fixed a;
-	Fixed b( a );
-	Fixed c;
-	
-	c = b;
-	
-	std::cout << a.getRawBits() << std::endl;
-	std::cout << b.getRawBits() << std::endl;
-	std::cout << c.getRawBits() << std::endl;
+class Fixed {
+public:
+	Fixed();
+	Fixed(const Fixed &obj);
+	~Fixed();
+	Fixed	&operator=(const Fixed &obj);
+	int	getRawBits(void) const;
+	void	setRawBits(int const raw);
+		
+private:
+	static const int8_t	fixed_point = 8;
+	int			value;
+};
 
-	return (0);
-}
+#endif
