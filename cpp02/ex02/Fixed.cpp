@@ -36,6 +36,22 @@ Fixed	&Fixed::operator=(const Fixed &obj) {
 	value = obj.getRawBits();
 	return (*this);
 }
+
+bool					Fixed::operator<(const Fixed &obj) { return (value < obj.getRawBits()); }
+bool					Fixed::operator>(const Fixed &obj) { return (value > obj.getRawBits()); }
+bool					Fixed::operator>=(const Fixed &obj) { return (value >= obj.getRawBits()); }
+bool					Fixed::operator<=(const Fixed &obj) { return (value <= obj.getRawBits()); }
+bool					Fixed::operator==(const Fixed &obj) { return (value == obj.getRawBits()); }
+bool					Fixed::operator!=(const Fixed &obj) { return (value != obj.getRawBits()); }
+Fixed					&Fixed::operator+(const Fixed &obj) { value += obj.getRawBits(); return (*this); }
+Fixed					&Fixed::operator-(const Fixed &obj) { value -= obj.getRawBits(); return (*this); }
+Fixed					&Fixed::operator*(const Fixed &obj) { value = (value * obj.getRawBits()) >> fixed_point; return (*this); }
+Fixed					&Fixed::operator/(const Fixed &obj) { value = (value / obj.getRawBits()) << fixed_point; return (*this); }
+Fixed					&Fixed::operator++()	{ value++; return (*this); };
+Fixed					Fixed::operator++(int) 	{ Fixed	tmp(*this); value++; return (tmp); };
+Fixed					&Fixed::operator--()	{ value--; return (*this); };
+Fixed					Fixed::operator--(int) 	{ Fixed	tmp(*this); value--; return (tmp); };
+
 std::ostream&	operator<<(std::ostream& stream, const Fixed& fixed) {
 	return (stream << fixed.toFloat());
 }
@@ -48,6 +64,11 @@ static int	round_fixed(int	const raw, int8_t const fixed_point) {
 	else
 		return (ceil);
 }
+
+Fixed	&Fixed::min(Fixed &a, Fixed &b) 				{ return (std::min(a.getRawBits(), b.getRawBits()) == a.getRawBits() ? a : b); }
+const Fixed	&Fixed::min(const Fixed &a, const Fixed &b) { return (std::min(a.getRawBits(), b.getRawBits()) == a.getRawBits() ? a : b); }
+Fixed	&Fixed::max(Fixed &a, Fixed &b) 				{ return (std::max(a.getRawBits(), b.getRawBits()) == a.getRawBits() ? a : b); }
+const Fixed	&Fixed::max(const Fixed &a, const Fixed &b) { return (std::max(a.getRawBits(), b.getRawBits()) == a.getRawBits() ? a : b); }
 
 
 float	Fixed::toFloat() const {
