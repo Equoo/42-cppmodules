@@ -23,13 +23,33 @@ public:
 	Fixed(const Fixed &obj);
 	~Fixed();
 
-	Fixed			&operator=(const Fixed &obj);
-	friend std::ostream&	operator<<(std::ostream& stream, const Fixed& fixed);
+	Fixed					&operator=(const Fixed &obj);
+	bool					operator<(const Fixed &obj);
+	bool					operator>(const Fixed &obj);
+	bool					operator>=(const Fixed &obj);
+	bool					operator<=(const Fixed &obj);
+	bool					operator==(const Fixed &obj);
+	bool					operator!=(const Fixed &obj);
+	Fixed					&operator+(const Fixed &obj);
+	Fixed					&operator-(const Fixed &obj);
+	Fixed					&operator*(const Fixed &obj);
+	Fixed					&operator/(const Fixed &obj);
+	Fixed					&operator++();
+	Fixed					operator++(int);
+	Fixed					&operator--();
+	Fixed					operator--(int);
 	
+	friend std::ostream&	operator<<(std::ostream& stream, const Fixed& fixed);
+
 	float	toFloat(void) const;
-	int	toInt(void) const;
-	int	getRawBits(void) const;
+	int		toInt(void) const;
+	int		getRawBits(void) const;
 	void	setRawBits(int const raw);
+	
+	static Fixed		&min(Fixed &a, Fixed &b);
+	static const Fixed	&min(const Fixed &a, const Fixed &b);
+	static Fixed		&max(Fixed &a, Fixed &b);
+	static const Fixed	&max(const Fixed &a, const Fixed &b);
 		
 private:
 	static const int8_t	fixed_point = 8;
