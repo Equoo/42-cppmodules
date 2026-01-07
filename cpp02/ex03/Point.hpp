@@ -20,28 +20,38 @@ class Point {
 public:
 	Point();
 	Point(const float x, const float y);
+	Point(const Fixed &x, const Fixed &y);
 	Point(const Point &point);
 	~Point();
 
 	Point	&operator=(const Point &obj);
-	bool	operator<(const Point &obj);
-	bool	operator>(const Point &obj);
-	bool	operator>=(const Point &obj);
-	bool	operator<=(const Point &obj);
-	bool	operator==(const Point &obj);
-	bool	operator!=(const Point &obj);
-	Point	&operator+(const Point &obj);
-	Point	&operator-(const Point &obj);
-	Point	&operator*(const Point &obj);
-	Point	&operator/(const Point &obj);
+	bool	operator<(const Point &obj) const;
+	bool	operator>(const Point &obj) const;
+	bool	operator>=(const Point &obj) const;
+	bool	operator<=(const Point &obj) const;
+	bool	operator==(const Point &obj) const;
+	bool	operator!=(const Point &obj) const;
+
+	bool	operator<(const float &v) const;
+	bool	operator>(const float &v) const;
+	bool	operator>=(const float &v) const;
+	bool	operator<=(const float &v) const;
+	bool	operator==(const float &v) const;
+	bool	operator!=(const float &v) const;
+
+	Point	operator+(const Point &obj) const;
+	Point	operator-(const Point &obj) const;
+	Point	operator*(const Point &obj) const;
+	Point	operator/(const Point &obj) const;
 
 	Fixed	getX() const;
-	Fixed	getY() const;	
+	Fixed	getY() const;
 	void	setX(Fixed value);
 	void	setY(Fixed value);
 
-	static bool bsp( Point const a, Point const b, Point const c, Point const point);
-	
+	static Point	cross(const Point &a, const Point &b);
+	static bool		bsp( Point const a, Point const b, Point const c, Point const point);
+
 private:
 	Fixed	x;
 	Fixed	y;

@@ -14,24 +14,23 @@
 #include "Point.hpp"
 #include <iostream>
 
-
-
 int main( void ) {
-	Fixed a;
-	Fixed b( Fixed( 5.05f ) * Fixed( 2 ) );
+	Point a(Fixed(0.f), Fixed(0.f));
+	Point b(Fixed(4.5f), Fixed(0.f));
+	Point c(Fixed(2.25f), Fixed(7.5f));
 
-	std::cout << a << std::endl;
-	std::cout << ++a << std::endl;
-	std::cout << a << std::endl;
-	std::cout << a++ << std::endl;
-	std::cout << a << std::endl;
+	Point p1(Fixed(2.f), Fixed(4.f));
+	Point p2(Fixed(0.f), Fixed(4.f));
+	Point p3(Fixed(0.1f), Fixed(0.1f));
+	Point p4(Fixed(4.4f), Fixed(0.335f));
+	Point p5(Fixed(4.4f), Fixed(0.338f));
 
-	std::cout << b << std::endl;
+	std::cout << p1 << ", " << Point::bsp(a, b, c, p1) << std::endl;
+	std::cout << p2 << ", " << Point::bsp(a, b, c, p2) << std::endl;
+	std::cout << p3 << ", " << Point::bsp(a, b, c, p3) << std::endl;
+	std::cout << p4 << ", " << Point::bsp(a, b, c, p4) << std::endl;
+	std::cout << p5 << ", " << Point::bsp(a, b, c, p5) << std::endl;
 
-	std::cout << Fixed::max( a, b ) << std::endl;
-	
-	std::cout << b + a << std::endl;
-	std::cout << b * a << std::endl;
-	return 0;
+	return (0);
 }
 

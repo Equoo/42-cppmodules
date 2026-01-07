@@ -26,8 +26,16 @@ int main( void ) {
 	std::cout << b << std::endl;
 
 	std::cout << Fixed::max( a, b ) << std::endl;
-	
+
+	std::cout << "more tests:" << std::endl;
+
 	std::cout << b + a << std::endl;
 	std::cout << b * a << std::endl;
+
+
+	std::cout << b << std::endl;
+	std::cout << b + Fixed(1) << std::endl;
+	std::cout << b + Fixed(1) << std::endl;
+
 	return 0;
 }
