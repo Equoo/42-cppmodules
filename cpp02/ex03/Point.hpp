@@ -23,28 +23,30 @@ public:
 	Point(const Point &point);
 	~Point();
 
-	Point					&operator=(const Point &obj);
-	bool					operator<(const Point &obj);
-	bool					operator>(const Point &obj);
-	bool					operator>=(const Point &obj);
-	bool					operator<=(const Point &obj);
-	bool					operator==(const Point &obj);
-	bool					operator!=(const Point &obj);
-	Point					&operator+(const Point &obj);
-	Point					&operator-(const Point &obj);
-	Point					&operator*(const Point &obj);
-	Point					&operator/(const Point &obj);
+	Point	&operator=(const Point &obj);
+	bool	operator<(const Point &obj);
+	bool	operator>(const Point &obj);
+	bool	operator>=(const Point &obj);
+	bool	operator<=(const Point &obj);
+	bool	operator==(const Point &obj);
+	bool	operator!=(const Point &obj);
+	Point	&operator+(const Point &obj);
+	Point	&operator-(const Point &obj);
+	Point	&operator*(const Point &obj);
+	Point	&operator/(const Point &obj);
+
+	Fixed	getX() const;
+	Fixed	getY() const;	
+	void	setX(Fixed value);
+	void	setY(Fixed value);
+
+	static bool bsp( Point const a, Point const b, Point const c, Point const point);
 	
-	friend std::ostream&	operator<<(std::ostream& stream, const Point& point);
-	
-	static Point		&min(Point &a, Point &b);
-	static const Point	&min(const Point &a, const Point &b);
-	static Point		&max(Point &a, Point &b);
-	static const Point	&max(const Point &a, const Point &b);
-		
 private:
-	Fixed			x;
-	Fixed			y;
+	Fixed	x;
+	Fixed	y;
 };
+
+std::ostream&	operator<<(std::ostream& stream, const Point& point);
 
 #endif

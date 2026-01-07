@@ -10,7 +10,8 @@ COMPILE_FLAGS = -Wall -Wextra -Werror -MMD -std=c++98
 INCLUDES =
 LIBS = 
 SRCS = main.cpp \
-       Fixed.cpp
+       Fixed.cpp \
+       Point.cpp
 
 OBJS = ${patsubst %.cpp,$(DIR_OBJ)%.o, $(SRCS)}
 

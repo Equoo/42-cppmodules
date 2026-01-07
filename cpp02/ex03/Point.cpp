@@ -1,7 +1,6 @@
 
 #include "Point.hpp"
 #include "Fixed.hpp"
-#include <cmath>
 #include <ostream>
 #include <stdint.h>
 #include <iostream>
@@ -32,10 +31,15 @@ Point					&Point::operator*(const Point &obj) { x *= obj.x; y *= obj.y; return (
 Point					&Point::operator/(const Point &obj) { x /= obj.x; y /= obj.y; return (*this); }
 
 std::ostream&	operator<<(std::ostream& stream, const Point& fixed) {
-	return (stream << "("  << fixed.x << ", " << fixed.y << ")");
+	return (stream << "("  << fixed.getX() << ", " << fixed.getY() << ")");
 }
 
-float	Point::toFloat() const {
-	return ((float)value / (1 << fixed_point));
-}
+Fixed	Point::getX() const { return (x); }
+Fixed	Point::getY() const { return (y); }
+void	Point::setX(Fixed value) { x = value; }
+void	Point::setY(Fixed value) { y = value; }
 
+
+bool Point::bsp( Point const a, Point const b, Point const c, Point const point) {
+	
+}
