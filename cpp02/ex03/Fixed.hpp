@@ -12,7 +12,7 @@
 
 #ifndef FIXED_HPP
 # define FIXED_HPP
-#include <ostream>
+# include <ostream>
 # include <stdint.h>
 
 class Fixed {

@@ -39,8 +39,6 @@ public:
 	Fixed					&operator--();
 	Fixed					operator--(int);
 	
-	friend std::ostream&	operator<<(std::ostream& stream, const Fixed& fixed);
-
 	float	toFloat(void) const;
 	int		toInt(void) const;
 	int		getRawBits(void) const;
@@ -55,5 +53,7 @@ private:
 	static const int8_t	fixed_point = 8;
 	int			value;
 };
+
+std::ostream&	operator<<(std::ostream& stream, const Fixed& fixed);
 
 #endif
