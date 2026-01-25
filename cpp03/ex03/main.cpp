@@ -1,5 +1,4 @@
  // ANSI escape codes for terminal colors
-#include <streambuf>
 #define RESET   "\033[0m"
 #define BLACK   "\033[30m"
 #define RED     "\033[31m"
@@ -54,6 +53,8 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
+#include <streambuf>
 #include <iostream>
 #include <string>
 
@@ -61,8 +62,7 @@ using std::cout;
 using std::endl;
 using std::string;
 
-void	test_claptrap()
-{
+void	test_claptrap() {
 	ClapTrap	paul(string("Paul"));
 	string		ennemy("ennemy");
 
@@ -112,8 +112,7 @@ void	test_claptrap()
 	mehdi.takeDamage(10);
 }
 
-void	test_scavtrap()
-{
+void	test_scavtrap() {
 	ScavTrap	noam(string("Noam"));
 
 	TEST_TITLE("ScavTrap default");
@@ -128,8 +127,7 @@ void	test_scavtrap()
 	noam.guardGate();
 }
 
-void	test_fragtrap()
-{
+void	test_fragtrap() {
 	FragTrap	feur(string("Feur"));
 
 	TEST_TITLE("FragTrap default");
@@ -144,6 +142,26 @@ void	test_fragtrap()
 	feur.highFivesGuys();
 }
 
+void	test_diamondtrap() {
+	DiamondTrap	diamond(string("Diamond"));
+
+	TEST_TITLE("FragTrap default");
+	PRINTLN(diamond, " HitPoints: ", diamond.getHitPoints());
+	PRINTLN(diamond, " EnergyPoints: ", diamond.getEnergyPoints());
+	PRINTLN(diamond, " AttackDamage: ", diamond.getAttackDamage());
+
+	TEST_TITLE("Attack");
+	diamond.attack("ZakhianEcureuil");
+
+	TEST_TITLE("GuardGate");
+	diamond.guardGate();
+
+	TEST_TITLE("HighFivesGuys");
+	diamond.highFivesGuys();
+
+	TEST_TITLE("WhoAmI");
+	diamond.whoAmI();
+}
 
 int main( void ) {
 	PRINTLN(BOLD_MAGENTA, "============ ClapTrap =============", RESET);
@@ -154,6 +172,9 @@ int main( void ) {
 	PRINTLN();
 	PRINTLN(BOLD_MAGENTA, "============ FragTrap =============", RESET);
 	test_fragtrap();
+	PRINTLN();
+	PRINTLN(BOLD_MAGENTA, "============ DiamondTrap =============", RESET);
+	test_diamondtrap();
 
 	return (0);
 }
