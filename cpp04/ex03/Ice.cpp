@@ -23,5 +23,5 @@ Ice *Ice::clone() const {
 	return (new Ice(*this));
 }
 void	Ice::use(ICharacter &target) const {
-	PRINTLN("* shoots an ice bolt at ", target.getName(), " *");
+	PRINTLN(MAGENTA, "* shoots an ice bolt at ", target.getName(), " *", RESET);
 };

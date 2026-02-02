@@ -1,3 +1,12 @@
+#include <iostream>
+
+
+#define C(r, g, b) "\e[38;2;"#r";"#g";"#b"m"
+#define BG_C(r, g, b) "\e[48;2;"#r";"#g";"#b"m"
+
+#define BG_C_GREY BG_C(60, 60, 60)
+#define BG_C_BLUE BG_C(77, 98, 124)
+#define BG_C_GREEN BG_C(81, 124, 77)
 
 // ANSI escape codes for terminal colors
 #define RESET   "\033[0m"

@@ -19,7 +19,7 @@ Cure	&Cure::operator=(const Cure &other) {
 Cure::~Cure() {}
 
 void	Cure::use(ICharacter &target) const {
-	PRINTLN("* heals ", target.getName(), "’s wounds *");
+	PRINTLN(MAGENTA, "* heals ", target.getName(), "’s wounds *", RESET);
 };
 
 Cure *Cure::clone() const {
