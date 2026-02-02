@@ -79,14 +79,32 @@ void	learn_limit() {
 	src->learnMateria(new Cure());
 	src->learnMateria(new Cure());
 	src->learnMateria(new Ice());
-	
+
 	src->createMateria("feur");
 	delete src->createMateria("ice");
 
 	delete src;
 }
 
+void	use_limit() {
+	IMateriaSource* src = new MateriaSource();
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
 
+	ICharacter* me = new Character("me");
+
+	me->use(0, *me);
+
+	AMateria* tmp;
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+
+	me->use(1, *me);
+	me->use(4, *me);
+
+	delete src;
+	delete me;
+}
 int main( void ) {
 	TITLE("LEGEND");
 	PRINTLN(BG_C_GREY, "AMateria child", RESET);
@@ -101,4 +119,7 @@ int main( void ) {
 
 	TITLE("Learn Limit");
 	learn_limit();
+	
+	TITLE("Use Limit");
+	use_limit();
 }
