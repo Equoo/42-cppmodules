@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Bureaucrat.hpp"
 #include <stdint.h>
 #include <stdexcept>
 #include <string>
