@@ -6,16 +6,17 @@
 
 class Bureaucrat;
 
-class Form  {
+class AForm  {
 public:
-	Form();
-	Form(const std::string &name, uint8_t grade_tosign, uint8_t grade_toexec);
-	Form(const Form &other);
-	~Form();
+	AForm();
+	AForm(const std::string &name, uint8_t grade_tosign, uint8_t grade_toexec);
+	AForm(const AForm &other);
+	virtual ~AForm();
 
-	Form	&operator=(const Form &other);
+	AForm	&operator=(const AForm &other);
 
 	void	beSigned(Bureaucrat &person);
+	virtual void	toExecute(Bureaucrat &person) = 0;
 
 	std::string	getName() const;
 	uint8_t	getGradeToSign() const;
@@ -30,8 +31,11 @@ private:
 	const uint8_t		_grade_tosign;
 	const uint8_t		_grade_toexec;
 	bool				_signed;
-	
+
 	void	checkGrade(uint8_t value);
+
+protected:
+	std::string			_target;
 };
 
-std::ostream&	operator<<(std::ostream& stream, const Form& obj);
+std::ostream&	operator<<(std::ostream& stream, const AForm& obj);
