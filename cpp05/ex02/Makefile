@@ -13,6 +13,8 @@ SRCS = main.cpp \
        Bureaucrat.cpp \
        AForm.cpp \
        ShrubberyCreationForm.cpp \
+       RobotomyRequestForm.cpp \
+	   PresidentialPardonForm.cpp \
 
 OBJS = ${patsubst %.cpp,$(DIR_OBJ)%.o, $(SRCS)}
 

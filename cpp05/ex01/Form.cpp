@@ -43,6 +43,10 @@ Form &Form::operator=(const Form &other){
 
 void	Form::beSigned(Bureaucrat &person)
 {
+	if (_signed) {
+		PRINTLN(person, " couldn't sign ", _name, " because already signed.");
+		return;
+	}
 	if (person.getGrade() > _grade_tosign) {
 		PRINTLN(person, " couldn't sign ", _name, " because grade to low to sign.");
 		return;
