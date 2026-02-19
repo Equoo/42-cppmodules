@@ -6,6 +6,7 @@
 #include <string>
 
 #include "Bureaucrat.hpp"
+#include "Intern.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
@@ -93,6 +94,33 @@ void test_form_executes() {
 	}
 }
 
+void test_intern() {
+	try {
+		Intern random;
+		AForm *tmp;
+
+		tmp = random.makeForm("Feur", "Patate");
+		PRINTLN("Feur, Patate: ", tmp);
+
+		tmp = random.makeForm("Presidential pardon ", "Patate");
+		PRINTLN("Presidential pardon , Patate: ", tmp);
+
+		tmp = random.makeForm("Presidential pardon", "Patate");
+		PRINTLN("Presidential pardon, Patate: ", *tmp);
+		delete tmp;
+
+		tmp = random.makeForm("RobOtomy REQUEST", "Caillou");
+		PRINTLN("RobOtomy REQUEST, Caillou: ", *tmp);
+		delete tmp;
+
+		tmp = random.makeForm("shrubbery creation", "Husserl");
+		PRINTLN("shrubbery creation, Husserl: ", *tmp);
+		delete tmp;
+	} catch (std::exception &e) {
+		PRINTLN("Something went wrong: ", e.what());
+	}
+}
+
 int main(void) {
 	std::srand(time(NULL));
 
@@ -102,7 +130,7 @@ int main(void) {
 	TITLE("Copies");
 	test_copies();
 
-	TITLE("bureaucrat Exceptions");
+	TITLE("Bureaucrat Exceptions");
 	test_bureaucrat_exceptions();
 
 	TITLE("AForm Exceptions");
@@ -110,4 +138,7 @@ int main(void) {
 
 	TITLE("Forms executes");
 	test_form_executes();
+
+	TITLE("Intern");
+	test_intern();
 }

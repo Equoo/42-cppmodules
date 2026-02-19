@@ -10,11 +10,7 @@ COMPILE_FLAGS = -Wall -Wextra -Werror -MMD -std=c++98
 INCLUDES =
 LIBS = 
 SRCS = main.cpp \
-       Bureaucrat.cpp \
-       AForm.cpp \
-       ShrubberyCreationForm.cpp \
-       RobotomyRequestForm.cpp \
-	   PresidentialPardonForm.cpp \
+       ScalarConverter.cpp \
 
 OBJS = ${patsubst %.cpp,$(DIR_OBJ)%.o, $(SRCS)}
 
