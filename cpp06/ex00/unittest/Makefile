@@ -1,4 +1,4 @@
-NAME = bin
+NAME = testunit
 CXX = c++
 
 DIR_OBJ = obj/
@@ -9,9 +9,7 @@ SRC_EXT = cpp
 COMPILE_FLAGS = -Wall -Wextra -Werror -MMD -std=c++98
 INCLUDES =
 LIBS = 
-SRCS = main.cpp \
-       utils.cpp \
-       ScalarConverter.cpp \
+SRCS = testunit.cpp \
 
 OBJS = ${patsubst %.cpp,$(DIR_OBJ)%.o, $(SRCS)}
 
