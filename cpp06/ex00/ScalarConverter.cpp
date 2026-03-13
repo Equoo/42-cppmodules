@@ -1,42 +1,31 @@
 #include "ScalarConverter.hpp"
 
+#include <stdint.h>
+
+#include <cctype>
 #include <cerrno>
 #include <cmath>
 #include <cstring>
-#include <iomanip>
 #include <iostream>
 #include <istream>
 #include <limits>
 #include <sstream>
 #include <string>
 
+#include "utils.hpp"
 #include "log.hpp"
+
 using std::string;
 
-static string lower_string(const string &_str) {
-	string str = _str;
+ScalarConverter::ScalarConverter() {}
+ScalarConverter::ScalarConverter(ScalarConverter &other) { (void)other; }
+ScalarConverter::~ScalarConverter() {}
+ScalarConverter &ScalarConverter::operator=(ScalarConverter &other) { (void)other; return *this; }
 
-	for (size_t j = 0; j < str.size(); ++j) {
-		str[j] = std::tolower(str[j]);
-	}
-	return str;
-}
-
-int ex10(double x) {
-	if (x == 0.0) return 0;
-	return static_cast<int>(std::floor(std::log10(std::fabs(x))));
-}
-
-double round_to(double value, int precision) {
-	if (ex10(value) >= precision) return round(value);
-	double factor = std::pow(10.0, precision - ex10(value));
-	return round(value * factor) / factor;
-}
-
-string get_precision_str(double d) {
-	return ((floor(d) == round_to(d, 5) || ceil(d) == round_to(d, 5)) && ex10(d) < 6
-				? ".0"
-				: "");
+string ScalarConverter::get_precision_str(double d) {
+	return (
+		(floor(d) == round_to(d, 5) || ceil(d) == round_to(d, 5))
+		&& ex10(d) < 6 ? ".0" : "");
 }
 
 void ScalarConverter::print_impossible() {
@@ -56,26 +45,27 @@ void ScalarConverter::convert(const string &value) {
 	double d = 0;
 
 	stream >> d;
-	stream >> buf;
-
-	if (buf != "" && buf != "f") {
-		print_impossible();
-		return;
-	}
 
 	if (stream.fail()) {
-		if (value.length() == 1)
-			d = value[0];
+		if (value.length() == 3 && value[0] == '\'' && value[2] == '\'')
+			d = value[1];
 		else if (lval == "nan" || lval == "nanf")
 			d = std::numeric_limits<double>::quiet_NaN();
-		else if (lval == "inf" || lval == "inff")
+		else if (lval == "+inf" || lval == "+inff")
 			d = std::numeric_limits<double>::infinity();
 		else if (lval == "-inf" || lval == "-inff")
 			d = -std::numeric_limits<double>::infinity();
-		// else {
-		// 	print_impossible();
-		// 	return;
-		// }
+		else {
+			print_impossible();
+			return;
+		}
+	}
+
+	stream >> buf;
+	if ((buf != "" && buf != "f") ||
+		(buf == "f" && value.find(".") == std::string::npos)) {
+		print_impossible();
+		return;
 	}
 
 	if (errno == ERANGE) {
@@ -85,20 +75,31 @@ void ScalarConverter::convert(const string &value) {
 			d = std::numeric_limits<double>::infinity();
 	}
 
-	c = d;
-	if (std::isprint(static_cast<unsigned char>(c)) &&
-		static_cast<double>(c) - d == 0)
-		PRINTLN("char: '", c, "'");
-	else
+	if (lval == "nan" || lval == "nanf") {
 		PRINTLN("char: impossible");
-
-	i = d;
-	if (static_cast<double>(i) - d != 0)
 		PRINTLN("int: impossible");
-	else
-		PRINTLN("int: ", i);
+	} else {
+		c = d;
+		if (std::isprint(static_cast<unsigned char>(c)) &&
+			static_cast<double>(c) - d == 0)
+			PRINTLN("char: '", c, "'");
+		else if (static_cast<double>(c) - static_cast<int64_t>(d) != 0 || d < 0 ||
+				 d > 127)
+			PRINTLN("char: impossible");
+		else
+			PRINTLN("char: Non displayable");
+
+		i = d;
+		if (d > static_cast<double>(std::numeric_limits<int>::max()) ||
+			d < static_cast<double>(std::numeric_limits<int>::min()))
+			PRINTLN("int: impossible");
+		else
+			PRINTLN("int: ", i);
+	}
 
 	f = d;
-	PRINTLN("float: ", f, get_precision_str(f), "f");
-	PRINTLN("double: ", d, get_precision_str(d));
+	const char *inff_symb = f == std::numeric_limits<float>::infinity() ? "+" : "";
+	const char *inf_symb = d == std::numeric_limits<double>::infinity() ? "+" : "";
+	PRINTLN("float: ", inff_symb, f, get_precision_str(f), "f");
+	PRINTLN("double: ", inf_symb, d, get_precision_str(d));
 }

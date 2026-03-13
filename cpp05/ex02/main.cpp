@@ -1,7 +1,6 @@
 
 #include "main.hpp"
 
-#include <cstdlib>
 #include <iostream>
 #include <string>
 
@@ -94,7 +93,7 @@ void test_form_executes() {
 }
 
 int main(void) {
-	std::srand(time(NULL));
+	srand(time(NULL))
 
 	TITLE("Assignements");
 	test_assignements();

@@ -8,7 +8,7 @@ using std::string;
 
 int main(int argc, char **argv) {
 	if (argc != 2) {
-		PRINTLN("ERr");
+		PRINTLN("Error\nUsage: ./bin <value>");
 		return (1);
 	}
 

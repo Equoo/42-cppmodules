@@ -46,5 +46,6 @@
 #define FOR_EACH_AGAIN() FOR_EACH_HELPER
 
 #define ADDTOSTREAM(x) << x
+#define PRINT(...) std::cout FOR_EACH(ADDTOSTREAM, __VA_ARGS__)
 #define PRINTLN(...) std::cout FOR_EACH(ADDTOSTREAM, __VA_ARGS__) << std::endl
 
