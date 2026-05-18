@@ -4,6 +4,7 @@
 
 !*.cpp
 !*.hpp
+!*.tpp
 !*.h
 !Makefile
 
