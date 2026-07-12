@@ -1,4 +1,4 @@
-NAME = bin
+NAME = btc
 CXX = c++
 
 DIR_OBJ = obj/

@@ -1,24 +1,36 @@
 
-#pragma once
-#include <algorithm>
-#include <stdexcept>
+#ifndef BITCOINEXCHANGE_HPP
+# define BITCOINEXCHANGE_HPP
 
-template <typename T>
-typename T::iterator easyfind(T &list, int value) {
-	const typename T::iterator it = std::find(list.begin(), list.end(), value);
+# include <cstddef>
+# include <ctime>
+# include <fstream>
+# include <map>
+# include <string>
 
-	if (it != list.end())
-		return (it);
-	else
-		throw std::runtime_error("No such value in container");
-}
+typedef struct {
+	std::time_t	date;
+	std::string	str_date;
+	float		value;
+}				t_line;
 
-template <typename T>
-typename T::const_iterator easyfind(const T &list, int value) {
-	const typename T::const_iterator it = std::find(list.begin(), list.end(), value);
+class BitcoinExchange {
+public:
+	BitcoinExchange();
+	BitcoinExchange(BitcoinExchange &other);
+	BitcoinExchange &operator=(BitcoinExchange &other);
+	~BitcoinExchange();
 
-	if (it != list.end())
-		return (it);
-	else
-		throw std::runtime_error("No such value in container");
-}
+	void loadData();
+	void exchange(const std::string &filename) const;
+
+private:
+	std::map<std::time_t, float> _data;
+
+	static void parseHeaders(std::ifstream &file, const std::string &sep, const std::string &first, const std::string &second);
+	static bool parseLine(std::ifstream &file, const std::string &sep, t_line &line,  size_t &line_count);
+
+	static std::runtime_error parsingError(int line, const std::string &msg);
+};
+
+#endif
