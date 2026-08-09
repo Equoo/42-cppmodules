@@ -75,7 +75,23 @@ void PmergeMe::printVector(const char *label,
 }
 
 std::vector< size_t > PmergeMe::jacobsthalInsertionOrder(size_t n) const {
-	return std::vector< size_t >(n);
+	std::vector< size_t > order;
+
+	size_t prev = 1;
+	size_t curr = 3;
+	while (prev < n) {
+		size_t higher_bound = std::min(curr, n);
+
+		for (size_t i = higher_bound; i >= prev + 1; i--) {
+			order.push_back(i - 1);
+		}
+
+		size_t next = curr + 2 * prev;
+		prev = curr;
+		curr = next;
+	}
+
+	return order;
 }
 
 void PmergeMe::fordJohnsonSortVector(std::vector< int > &arr) {
@@ -127,9 +143,11 @@ void PmergeMe::fordJohnsonSortVector(std::vector< int > &arr) {
 	if (!sortedPairs.empty())
 		chain.insert(chain.begin(), sortedPairs[0].second);
 
-	for (size_t i = 1; i < sortedPairs.size(); i++) {
-		int loser = sortedPairs[i].second;
-		int winner = sortedPairs[i].first;
+	std::vector< size_t > order = jacobsthalInsertionOrder(sortedPairs.size());
+
+	for (size_t i = 0; i < order.size(); i++) {
+		int loser = sortedPairs[order[i]].second;
+		int winner = sortedPairs[order[i]].first;
 
 		std::vector< int >::iterator winnerIt =
 			std::find(chain.begin(), chain.end(), winner);
