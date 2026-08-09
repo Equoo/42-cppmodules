@@ -169,6 +169,78 @@ void PmergeMe::fordJohnsonSortList(std::list< int > &lst) {
 	size_t n = lst.size();
 	if (n <= 1)
 		return;
+
+	bool hasStraggler = (n % 2 == 1);
+	int straggler = lst.back();
+	if (hasStraggler) {
+		lst.pop_back();
+		n -= 1;
+	}
+
+	std::list< std::pair< int, int > > pairs;
+	std::list< int >::iterator it = lst.begin();
+	while (it != lst.end()) {
+		int a = *it;
+		++it;
+		if (it == lst.end())
+			break;
+		int b = *it;
+		++it;
+		if (a > b)
+			pairs.push_back(std::pair< int, int >(a, b));
+		else
+			pairs.push_back(std::pair< int, int >(b, a));
+	}
+
+	std::list< int > winners;
+	for (std::list< std::pair< int, int > >::iterator pit = pairs.begin();
+	     pit != pairs.end(); ++pit) {
+		winners.push_back(pit->first);
+	}
+	fordJohnsonSortList(winners);
+
+	std::list< bool > used(pairs.size(), false);
+	std::list< std::pair< int, int > > sortedPairs;
+	std::list< int > chain;
+
+	for (std::list< int >::iterator wit = winners.begin(); wit != winners.end();
+	     ++wit) {
+		std::list< std::pair< int, int > >::iterator pit = pairs.begin();
+		std::list< bool >::iterator uit = used.begin();
+		for (; pit != pairs.end(); ++pit, ++uit) {
+			if (!*uit && pit->first == *wit) {
+				sortedPairs.push_back(*pit);
+				chain.push_back(pit->first);
+				*uit = true;
+				break;
+			}
+		}
+	}
+
+	if (!sortedPairs.empty())
+		chain.push_front(sortedPairs.begin()->second);
+
+	std::vector< size_t > order = jacobsthalInsertionOrder(sortedPairs.size());
+
+	for (size_t i = 0; i < order.size(); i++) {
+		std::list< std::pair< int, int > >::iterator pit = sortedPairs.begin();
+		std::advance(pit, order[i]);
+		int loser = pit->second;
+		int winner = pit->first;
+		std::list< int >::iterator winnerIt =
+			std::find(chain.begin(), chain.end(), winner);
+		std::list< int >::iterator pos =
+			std::lower_bound(chain.begin(), winnerIt, loser);
+		chain.insert(pos, loser);
+	}
+
+	if (hasStraggler) {
+		std::list< int >::iterator pos =
+			std::lower_bound(chain.begin(), chain.end(), straggler);
+		chain.insert(pos, straggler);
+	}
+
+	lst = chain;
 }
 
 void PmergeMe::run(int argc, char **argv) {
@@ -200,10 +272,4 @@ void PmergeMe::run(int argc, char **argv) {
 			  << std::endl;
 	std::cout << "Time to process a range of " << _lstInput.size()
 			  << " elements with std::list : " << lstTime << " us" << std::endl;
-
-	// NOTE: DEBUG
-	std::cout << "Vector sorted: " << isSorted(vecCopy.begin(), vecCopy.end())
-			  << std::endl
-			  << "List sorted: " << isSorted(lstCopy.begin(), lstCopy.end())
-			  << std::endl;
 }
