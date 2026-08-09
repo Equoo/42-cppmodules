@@ -124,13 +124,17 @@ void PmergeMe::fordJohnsonSortVector(std::vector< int > &arr) {
 		}
 	}
 
-	chain.insert(chain.begin(), sortedPairs[0].second);
+	if (!sortedPairs.empty())
+		chain.insert(chain.begin(), sortedPairs[0].second);
 
 	for (size_t i = 1; i < sortedPairs.size(); i++) {
 		int loser = sortedPairs[i].second;
+		int winner = sortedPairs[i].first;
 
+		std::vector< int >::iterator winnerIt =
+			std::find(chain.begin(), chain.end(), winner);
 		std::vector< int >::iterator pos =
-			std::lower_bound(chain.begin(), chain.end(), loser);
+			std::lower_bound(chain.begin(), winnerIt, loser);
 		chain.insert(pos, loser);
 	}
 
