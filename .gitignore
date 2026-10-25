@@ -7,5 +7,6 @@
 !*.tpp
 !*.h
 !Makefile
+!README.md
 
 !*/
